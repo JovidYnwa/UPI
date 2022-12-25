@@ -33,6 +33,9 @@ class UpiUser(AbstractBaseUser, PermissionsMixin):
     """
 
     phone = models.CharField(max_length=12, unique=True)
+    #user_inn = models.CharField(max_length=50, blank=True, null=True)
+    #user_passport = models.ImageField(blank=True, null=True)
+    #approved = models.BooleanField(default=False, blank=True, null=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
