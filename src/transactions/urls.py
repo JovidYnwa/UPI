@@ -1,5 +1,6 @@
 from django.urls import path
-from .views import (TransactionView, 
+from .views import (MerchantCategoryView, 
+                    TransactionView, 
                     LanguagesView,
                     )
 
@@ -10,4 +11,5 @@ urlpatterns = [
                                              'delete':'destroy'}), name='language'),
     path('language/<int:pk>/', LanguagesView.as_view({'get': 'retrieve',
                                                       'delete':'destroy'}), name='language'),
+    path('merch-category/', MerchantCategoryView.as_view(), name='list-category-merchant')
 ]

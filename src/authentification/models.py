@@ -1,8 +1,13 @@
 from django.db import models
+from django.core.validators import FileExtensionValidator
+
 from django.contrib.auth.models import (AbstractBaseUser, 
                                         PermissionsMixin, 
                                         BaseUserManager
                                     )
+
+from base.services import (get_path_upload_avatar, 
+                          validate_size_image)
 
 
 class UserAccountManager(BaseUserManager):
@@ -33,16 +38,14 @@ class UpiUser(AbstractBaseUser, PermissionsMixin):
     """
 
     phone = models.CharField(max_length=12, unique=True)
-    #user_inn = models.CharField(max_length=50, blank=True, null=True)
-    #user_passport = models.ImageField(blank=True, null=True)
-    #approved = models.BooleanField(default=False, blank=True, null=True)
+    approved = models.BooleanField(default=False, blank=True, null=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
     objects = UserAccountManager()
 
     USERNAME_FIELD = "phone"
-    # REQUIRED_FIELDS = ["phone"]
+    # REQUIRED_FIELDS = []
 
     def get_full_name(self):
         return self.phone
@@ -54,11 +57,29 @@ class UpiUser(AbstractBaseUser, PermissionsMixin):
         return self.phone
 
 
+class UserData(models.Model):
+    """Model for saving pesonal user info
+    """
+    
+    user_id = models.ForeignKey(UpiUser, on_delete=models.CASCADE)
+    user_inn = models.CharField(max_length=50, unique=True)
+    user_email = models.EmailField(blank=True, null=True)
+    user_passport = models.ImageField(
+        upload_to=get_path_upload_avatar,
+        validators=[FileExtensionValidator(allowed_extensions=['jpg',]),
+        validate_size_image], #jpg format is required
+        blank=True,
+        null=True)
+    
+    def __str__(self):
+        return str(self.user_id)
+
+
 class UserAccount(models.Model):
     """User accounts models
     """
     
-    phone_id = models.ForeignKey(UpiUser, to_field='phone', on_delete=models.CASCADE)
+    user_id = models.ForeignKey(UpiUser, on_delete=models.CASCADE)
     account = models.CharField(max_length=20,)
     #clnt_id  #In case if will need unique id from our customers
     bank_id = models.CharField(max_length=200,)
@@ -68,4 +89,4 @@ class UserAccount(models.Model):
     comment = models.TextField(blank=True, null=True)
 
     def __str__(self):
-        return str(self.phone_id)
+        return str(self.user_id)

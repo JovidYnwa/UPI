@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -112,10 +113,16 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+#Media files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -123,14 +130,18 @@ REST_FRAMEWORK = {
     ),
 }
 
+
+#JWT settings here we can add more parametrs
 SIMPLE_JWT = {
    'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
+#Djoser customazation
 DJOSER = {
     'LOGIN_FIELD': 'phone',
     'USER_CREATE_PASSWORD_RETYPE': True,
 }
 
+#After declare custom model we got to owerite this parametr
 AUTH_USER_MODEL = 'authentification.UpiUser'
 

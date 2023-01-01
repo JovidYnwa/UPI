@@ -1,18 +1,21 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
+from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework import viewsets
+
 from rest_framework.permissions import (IsAuthenticated, 
                                         IsAdminUser,
                                         IsAuthenticatedOrReadOnly,
                                         )
-from rest_framework.decorators import permission_classes, api_view
 
-from transactions.serializer import (TransactionSerializer, 
+from transactions.serializer import (MerchantCategorySerializer, 
+                                     TransactionSerializer, 
                                      LanguageSerializer,
                                      )
 from transactions.models import (Transaction, 
                                  Language,
+                                 MerchantCategory
                                  )
 
 
@@ -43,3 +46,11 @@ class LanguagesView(viewsets.ModelViewSet):
             permission_classes = [IsAdminUser]
         permission_classes = [IsAuthenticatedOrReadOnly]
         return [permission() for permission in permission_classes]
+
+
+class MerchantCategoryView(generics.ListAPIView):
+    
+    queryset = MerchantCategory.objects.filter()
+    serializer_class = MerchantCategorySerializer
+    
+    

@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import (UpiUser, 
-                     UserAccount
+                     UserAccount,
+                     UserData,
                      )
 
 class UpiUserAdmin(admin.ModelAdmin):
@@ -10,4 +11,6 @@ class UpiUserAdmin(admin.ModelAdmin):
 
 admin.site.register(UpiUser, UpiUserAdmin)
 admin.site.register(UserAccount)
+admin.site.register(UserData)
+
 
