@@ -1,5 +1,10 @@
+from datetime import datetime
 from django.db import models
+from django.core.validators import FileExtensionValidator
 from authentification.models import UserAccount
+
+from base.services import (get_path_upload_merchant, 
+                        validate_size_image)
 
 
 class Language(models.Model):
@@ -18,7 +23,15 @@ class MerchantCategory(models.Model):
 
     lang_id = models.ForeignKey(Language, on_delete=models.CASCADE)
     category_name = models.CharField(max_length=100,)
-    #category_logo = models.ImageField()
+    start_date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    end_date = models.DateTimeField(default=datetime(2999, 12, 1))
+    category_logo = models.ImageField(        
+        upload_to=get_path_upload_merchant,
+        validators=[FileExtensionValidator(allowed_extensions=['jpg',]),
+        validate_size_image], 
+        blank=True,
+        null=True
+    )
 
     def __str__(self):
         return self.category_name
