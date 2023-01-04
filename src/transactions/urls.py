@@ -1,5 +1,7 @@
 from django.urls import path
-from .views import (MerchantCategoryView, 
+from .views import (MerchantCategoryListCreateView,
+                    MerchantCategoryRetrieveView,
+                    MerchantCategoryUpdateView,
                     TransactionView, 
                     LanguagesView,
                     )
@@ -11,5 +13,10 @@ urlpatterns = [
                                              'delete':'destroy'}), name='language'),
     path('language/<int:pk>/', LanguagesView.as_view({'get': 'retrieve',
                                                       'delete':'destroy'}), name='language'),
-    path('merch-category/', MerchantCategoryView.as_view(), name='list-category-merchant')
+
+    path('merch-category/', MerchantCategoryListCreateView.as_view(), name='list-category-merchant'),
+    path('merch-category/<int:pk>/', MerchantCategoryRetrieveView.as_view(), name='list-category-merchant'),
+    path('merch-category/update/<int:pk>/', MerchantCategoryUpdateView.as_view(), name='list-category-merchant'),
+
+
 ]

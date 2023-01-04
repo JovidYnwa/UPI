@@ -23,6 +23,7 @@ class CreateAccountView(APIView):
 class UserDataView(APIView):
     """View for user data info
     """
+    
     permission_classes = [IsAuthenticated,]
 
     def post(self, request):

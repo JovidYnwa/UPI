@@ -51,7 +51,7 @@ class LanguagesView(viewsets.ModelViewSet):
         return [permission() for permission in permission_classes]
 
 
-class MerchantCategoryView(generics.ListCreateAPIView):
+class MerchantCategoryListCreateView(generics.ListCreateAPIView):
     """Generics views
     Create only for admin user
     List only from authenticated
@@ -66,4 +66,24 @@ class MerchantCategoryView(generics.ListCreateAPIView):
         else:
             permission_classes = [IsAuthenticatedOrReadOnly]
         return [permission() for permission in permission_classes]
-            
+
+
+class MerchantCategoryRetrieveView(generics.RetrieveAPIView):
+    """Generics views for Deitail view
+    Create only for admin user
+    List only from authenticated
+    """
+
+    permission_classes = [IsAuthenticated,]
+    queryset = MerchantCategory.objects.filter(end_date__gt=datetime.datetime.now())
+    serializer_class = MerchantCategorySerializer
+    lookup_field = 'pk'
+
+class MerchantCategoryUpdateView(generics.UpdateAPIView):
+    """Generics views for Update view
+    """
+    
+    permission_classes = [IsAdminUser,]
+    queryset = MerchantCategory.objects.filter(end_date__gt=datetime.datetime.now())
+    serializer_class = MerchantCategorySerializer
+    lookup_field = 'pk'
