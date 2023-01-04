@@ -87,3 +87,5 @@ class MerchantCategoryUpdateView(generics.UpdateAPIView):
     queryset = MerchantCategory.objects.filter(end_date__gt=datetime.datetime.now())
     serializer_class = MerchantCategorySerializer
     lookup_field = 'pk'
+
+#Crud Operation for Merchant model

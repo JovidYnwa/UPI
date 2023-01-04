@@ -42,7 +42,7 @@ class Merchant(models.Model):
     """
     
     merch_id = models.CharField(max_length=50, blank=True, null=True) #comes from vendor side
-    cat_id = models.ForeignKey(MerchantCategory, on_delete=models.CASCADE)
+    merch_cat_id = models.ForeignKey(MerchantCategory, on_delete=models.CASCADE)
     lang_id = models.ForeignKey(Language, on_delete=models.CASCADE)
     merchat_name = models.CharField(max_length=200,)
     merchant_description = models.TextField(null=True, blank=True)
