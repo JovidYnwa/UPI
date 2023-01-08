@@ -89,3 +89,12 @@ class MerchantCategoryUpdateView(generics.UpdateAPIView):
     lookup_field = 'pk'
 
 #Crud Operation for Merchant model
+
+#Test
+from django.http import JsonResponse
+class TestingQueriesDebug(APIView):
+
+    def get(self, request):
+        queryset = MerchantCategory.objects.values('category_name', 'lang_id__lang_name')
+        print(queryset)
+        return Response("")

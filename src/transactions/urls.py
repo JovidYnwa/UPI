@@ -1,9 +1,11 @@
 from django.urls import path
 from .views import (MerchantCategoryListCreateView,
                     MerchantCategoryRetrieveView,
-                    MerchantCategoryUpdateView,
-                    TransactionView, 
+                    MerchantCategoryUpdateView, 
                     LanguagesView,
+
+                    TestingQueriesDebug,
+                    TransactionView, 
                     )
 
 urlpatterns = [
@@ -19,4 +21,5 @@ urlpatterns = [
     path('merch-category/update/<int:pk>/', MerchantCategoryUpdateView.as_view(), name='list-category-merchant'),
 
 
+    path('debug/', TestingQueriesDebug.as_view()),
 ]
