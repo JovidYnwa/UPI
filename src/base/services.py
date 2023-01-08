@@ -15,7 +15,7 @@ def get_path_upload_merchant(instance, file):
     format: (media)/merchant/merchant_category/user_id/photo.jpg
     """
 
-    if instance.__class__.__name__ == 'Merchant': #Do not like this part maybe I shoudl use isinstance
+    if instance.__class__.__name__ == 'Merchant': #Do not like this part maybe I should use isinstance
         return f'merchant/merchants/{instance}/{file}'
     return f'merchant/merchant_category/{instance}/{file}'
 
