@@ -128,7 +128,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-
+#Rest framework settings
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -141,21 +141,24 @@ SIMPLE_JWT = {
    'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
-#Djoser customazation
+
+#Djoser settings
 DJOSER = {
     'LOGIN_FIELD': 'phone',
     'USER_CREATE_PASSWORD_RETYPE': True,
 }
 
+
 #After declare custom model we got to owerite this parametr
 AUTH_USER_MODEL = 'authentification.UpiUser'
 
-#Django Debug Toolbar
+
+#Django Debug Toolbar settings
 INTERNAL_IPS = [
-    # ...
     "127.0.0.1",
-    # ...
 ]
+
+
 DEBUG_TOOLBAR_PANELS = [
     'debug_toolbar.panels.history.HistoryPanel',
     'debug_toolbar.panels.versions.VersionsPanel',
@@ -172,3 +175,13 @@ DEBUG_TOOLBAR_PANELS = [
     'debug_toolbar.panels.redirects.RedirectsPanel',
     'debug_toolbar.panels.profiling.ProfilingPanel',
 ]
+
+#Redis settings
+REDIS_HOST = '0.0.0.0'
+REDIS_PORT = '6379'
+CELERY_BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+CELERY_BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600}
+CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'

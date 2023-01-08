@@ -33,3 +33,6 @@ class UserDataView(APIView):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors)
+
+
+#celery beat for customer birthday

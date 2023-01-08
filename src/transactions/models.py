@@ -59,6 +59,7 @@ class Merchant(models.Model):
     def __str__(self) -> str:
         return self.merch_id
 
+
 class Transaction(models.Model):
     """Models of customer transactions
     """

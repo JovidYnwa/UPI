@@ -18,6 +18,8 @@ from transactions.models import (Transaction,
                                  MerchantCategory
                                  )
 
+from transactions.tasks import sleep_task
+
 
 
 class TransactionView(APIView):
@@ -96,5 +98,7 @@ class TestingQueriesDebug(APIView):
 
     def get(self, request):
         queryset = MerchantCategory.objects.values('category_name', 'lang_id__lang_name')
-        print(queryset)
-        return Response("")
+        #print(queryset)
+
+        sleep_task.delay(100) #dela() Invorke or celery instance to recive task
+        return Response("Task was recieved")
