@@ -48,7 +48,13 @@ class Merchant(models.Model):
     merchant_description = models.TextField(null=True, blank=True)
     start_date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     end_date = models.DateTimeField(blank=True, null=True)
-    #merchant_logo = models.ImageField(upload_to=)
+    merchant_logo = models.ImageField(        
+        upload_to=get_path_upload_merchant,
+        validators=[FileExtensionValidator(allowed_extensions=['jpg',]),
+        validate_size_image], 
+        blank=True,
+        null=True
+    )
 
     def __str__(self) -> str:
         return self.merch_id
