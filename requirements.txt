@@ -15,8 +15,10 @@ coreschema==0.0.4
 cryptography==38.0.3
 defusedxml==0.7.1
 Django==4.1.3
+django-celery-beat==2.4.0
 django-celery-results==2.4.0
 django-templated-mail==1.1.1
+django-timezone-field==5.0
 django_debug_toolbar==3.8.1
 djangorestframework==3.14.0
 djangorestframework-simplejwt==5.2.2
@@ -31,6 +33,8 @@ Pillow==9.3.0
 prompt-toolkit==3.0.36
 pycparser==2.21
 PyJWT==2.6.0
+python-crontab==2.7.1
+python-dateutil==2.8.2
 python3-openid==3.2.0
 pytz==2022.6
 redis==4.4.1
@@ -40,6 +44,7 @@ six==1.16.0
 social-auth-app-django==4.0.0
 social-auth-core==4.3.0
 sqlparse==0.4.3
+tzdata==2022.7
 uritemplate==4.1.1
 urllib3==1.26.12
 vine==5.0.0

@@ -32,4 +32,5 @@ Once `pip` has finished downloading the dependencies:
 Celery command:
 ```
 launching celery command celery -A upi worker -l info
+launching celery beat process celery -A upi beat -l INFO
 ```

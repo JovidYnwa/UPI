@@ -31,7 +31,7 @@ INSTALLED_APPS = [
     'djoser',
     'debug_toolbar',
     'django_celery_results',
-
+    'django_celery_beat',
     
     # own
     'authentification',
@@ -181,9 +181,29 @@ DEBUG_TOOLBAR_PANELS = [
 #Redis settings
 REDIS_HOST = '127.0.0.1'
 REDIS_PORT = '6379'
+
+
+
+# celery setting.
 CELERY_BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
 CELERY_BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600}
 CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_CACHE_BACKEND = 'default'
+
+#celery beat
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+
+# django setting.
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'my_cache_table',
+    }
+}
+
+
+#elery -A upi beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler
