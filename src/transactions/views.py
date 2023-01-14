@@ -100,5 +100,5 @@ class TestingQueriesDebug(APIView):
         queryset = MerchantCategory.objects.values('category_name', 'lang_id__lang_name')
         #print(queryset)
 
-        sleep_task.delay(100) #dela() Invorke or celery instance to recive task
+        sleep_task.delay(5) #delay() Invorke or celery instance to recive task
         return Response("Task was recieved")
