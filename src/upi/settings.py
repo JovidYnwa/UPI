@@ -206,4 +206,4 @@ CACHES = {
 }
 
 
-#elery -A upi beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler
+#maybe later on I should remove cashing because of time and space consuming
