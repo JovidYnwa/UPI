@@ -28,3 +28,8 @@ Once `pip` has finished downloading the dependencies:
 (env)$ cd project
 (env)$ python manage.py runserver
 ```
+
+Celery command:
+```
+launching celery command celery -A upi worker -l info
+```
