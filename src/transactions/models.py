@@ -1,5 +1,5 @@
-from datetime import datetime
 from django.db import models
+from django.utils import timezone
 from django.core.validators import FileExtensionValidator
 from authentification.models import UserAccount
 
@@ -24,7 +24,7 @@ class MerchantCategory(models.Model):
     lang_id = models.ForeignKey(Language, on_delete=models.CASCADE)
     category_name = models.CharField(max_length=100,)
     start_date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
-    end_date = models.DateTimeField(default=datetime(2999, 12, 1))
+    end_date = models.DateTimeField(default=timezone.datetime(2999, 12, 12, tzinfo=timezone.utc))
     category_logo = models.ImageField(        
         upload_to=get_path_upload_merchant,
         validators=[FileExtensionValidator(allowed_extensions=['jpg',]),
@@ -47,7 +47,7 @@ class Merchant(models.Model):
     merchat_name = models.CharField(max_length=200,)
     merchant_description = models.TextField(null=True, blank=True)
     start_date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
-    end_date = models.DateTimeField(blank=True, null=True)
+    end_date = models.DateTimeField(default=timezone.datetime(2999, 12, 1))
     merchant_logo = models.ImageField(        
         upload_to=get_path_upload_merchant,
         validators=[FileExtensionValidator(allowed_extensions=['jpg',]),

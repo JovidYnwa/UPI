@@ -81,6 +81,7 @@ class MerchantCategoryRetrieveView(generics.RetrieveAPIView):
     serializer_class = MerchantCategorySerializer
     lookup_field = 'pk'
 
+
 class MerchantCategoryUpdateView(generics.UpdateAPIView):
     """Generics views for Update view
     """
@@ -90,10 +91,11 @@ class MerchantCategoryUpdateView(generics.UpdateAPIView):
     serializer_class = MerchantCategorySerializer
     lookup_field = 'pk'
 
+
 #Crud Operation for Merchant model
 
-#Test
-from django.http import JsonResponse
+
+#Testing celery workers
 class TestingQueriesDebug(APIView):
 
     def get(self, request):

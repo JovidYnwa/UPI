@@ -108,7 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Ashgabat'
 
 USE_I18N = True
 
@@ -178,10 +178,10 @@ DEBUG_TOOLBAR_PANELS = [
     'debug_toolbar.panels.profiling.ProfilingPanel',
 ]
 
+
 #Redis settings
 REDIS_HOST = '127.0.0.1'
 REDIS_PORT = '6379'
-
 
 
 # celery setting.
@@ -194,8 +194,10 @@ CELERY_RESULT_SERIALIZER = 'json'
 CELERY_RESULT_BACKEND = 'django-db'
 CELERY_CACHE_BACKEND = 'default'
 
+
 #celery beat
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+
 
 # django setting.
 CACHES = {
