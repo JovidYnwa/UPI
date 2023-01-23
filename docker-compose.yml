@@ -9,20 +9,20 @@ services:
     env_file:
       - .env
   upi_project:
-    build: #we will need this one in case if we did build our docker file previously
-      dockerfile: Dockerfile
-      context: .
-    #image: up1:latest
-    container_name: elastic_villan #should take it from docker ps
+    #build:
+      #dockerfile: Dockerfile
+      #context: .
+    image: upi1
+    container_name: upi_django 
     depends_on:
-      - upi_db #it wont work untill out db will launch
+      - upi_db 
     volumes:
       - static_volume:/upi/static
       - media_volume:/upi/media
     env_file:
       - .env
     command: >
-      bash -c "./manage.py collectstatic --noinput && ./manage.py migrate  && gunicorn -b 0.0.0.0:8000 upi.wsgi:"
+      bash -c "python manage.py collectstatic --noinput && python manage.py migrate  && gunicorn -b 0.0.0.0:8000 upi.wsgi"
   nginx:
     build:
       dockerfile: ./Dockerfile
@@ -30,8 +30,8 @@ services:
     container_name: upi_nginx
     image: upi_nginx
     volumes:
-      - static_volume:/yt/static
-      - media_volume:/yt/media
+      - static_volume:/upi/static
+      - media_volume:/upi/media
     depends_on:
       - upi_project
     ports:
@@ -39,7 +39,6 @@ services:
 
 
 
-#we telling docker to figure out sorage palce by it own unlike voulms for upi_db
 volumes:
   static_volume:
   media_volume:
