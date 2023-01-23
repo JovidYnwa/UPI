@@ -1,0 +1,44 @@
+version: "3.9"
+
+services:
+  upi_db:
+    image: postgres:15
+    container_name: upi_postgres
+    volumes:
+      - ~/.pg/pg_data/upi:/var/lib/postgresql/data
+    env_file:
+      - .env
+  upi_project:
+    #build:
+      #dockerfile: Dockerfile
+      #context: .
+    image: upi1
+    container_name: upi_django 
+    depends_on:
+      - upi_db 
+    volumes:
+      - static_volume:/upi/static
+      - media_volume:/upi/media
+    env_file:
+      - .env
+    command: >
+      bash -c "python manage.py collectstatic --noinput && python manage.py migrate  && gunicorn -b 0.0.0.0:8000 upi.wsgi"
+  nginx:
+    build:
+      dockerfile: ./Dockerfile
+      context: ./docker/nginx/
+    container_name: upi_nginx
+    image: upi_nginx
+    volumes:
+      - static_volume:/upi/static
+      - media_volume:/upi/media
+    depends_on:
+      - upi_project
+    ports:
+      - "${NGINX_EXTERNAL_PORT}:80"
+
+
+
+volumes:
+  static_volume:
+  media_volume:
