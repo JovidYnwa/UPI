@@ -6,10 +6,8 @@ from transactions.models import Transaction
 
 @shared_task
 def sleep_task(total_time):
-
     sleep(total_time)
-    print('ahahaha')
-    return 'love for Foli'
+    return 'lo lo lo'
 
 
 @shared_task

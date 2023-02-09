@@ -12,7 +12,7 @@ services:
     #build:
       #dockerfile: Dockerfile
       #context: .
-    image: upi1
+    image: upi
     container_name: upi_django 
     depends_on:
       - upi_db 
@@ -46,8 +46,10 @@ services:
     # build: 
     #   context: .
     #   dockerfile: Dockerfile
-    image: upi1
+    image: upi
     container_name: celery
+    env_file:
+      - .env
     command: >
      bash -c "celery -A upi worker -l info"
     depends_on:
