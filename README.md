@@ -29,8 +29,8 @@ Once `pip` has finished downloading the dependencies:
 (env)$ python manage.py runserver
 ```
 
-Celery command:
+Celery command (upi is the name of the project):
 ```
-launching celery command celery -A upi worker -l info
-launching celery beat process celery -A upi beat -l INFO
+launching celery command:       celery -A upi worker -l info
+launching celery beat process:  celery -A upi beat -l INFO
 ```
