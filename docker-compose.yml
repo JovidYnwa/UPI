@@ -36,7 +36,22 @@ services:
       - upi_project
     ports:
       - "${NGINX_EXTERNAL_PORT}:80"
-
+  redis:
+    image: redis:latest
+    container_name: redis
+    restart: always
+    expose:
+      - 6379
+  celery:
+    # build: 
+    #   context: .
+    #   dockerfile: Dockerfile
+    image: upi1
+    container_name: celery
+    command: >
+     bash -c "celery -A upi worker -l info"
+    depends_on:
+      - redis
 
 
 volumes:
