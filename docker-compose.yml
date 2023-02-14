@@ -9,10 +9,10 @@ services:
     env_file:
       - .env
   upi_project:
-    #build:
-      #dockerfile: Dockerfile
-      #context: .
-    image: upi
+    build:
+      dockerfile: Dockerfile
+      context: .
+    #image: upi
     container_name: upi_django 
     depends_on:
       - upi_db 
@@ -43,15 +43,15 @@ services:
     expose:
       - 6379
   celery:
-    # build: 
-    #   context: .
-    #   dockerfile: Dockerfile
-    image: upi
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    #image: upi
     container_name: celery
     env_file:
       - .env
     command: >
-     bash -c "celery -A upi worker -l info"
+     bash -c "celery -A upi beat -l info"
     depends_on:
       - redis
 
