@@ -72,7 +72,7 @@ class Transaction(models.Model):
     end_date = models.DateTimeField(blank=True, null=True)
 
     def __str__(self) -> str:
-        return self.transaction_id
+        return self.partner_transaction_id
 
 
 class BankLogos(models.Model):

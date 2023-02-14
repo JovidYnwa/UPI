@@ -192,7 +192,7 @@ DEBUG_TOOLBAR_PANELS = [
 
 
 # My config
-USE_DOCKER = True
+USE_DOCKER = False
 
 if USE_DOCKER:
     REDIS_HOST='redis'
