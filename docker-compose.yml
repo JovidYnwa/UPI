@@ -50,8 +50,7 @@ services:
     container_name: celery
     env_file:
       - .env
-    command: >
-     bash -c "celery -A upi beat -l info"
+    command: celery -A upi beat -l info
     depends_on:
       - redis
 
