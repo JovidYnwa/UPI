@@ -1,4 +1,4 @@
-import datetime
+from django.utils import timezone
 from rest_framework.views import APIView
 from rest_framework import generics
 from rest_framework.response import Response
@@ -59,7 +59,7 @@ class MerchantCategoryListCreateView(generics.ListCreateAPIView):
     List only from authenticated
     """
 
-    queryset = MerchantCategory.objects.filter(end_date__gt=datetime.datetime.now())
+    queryset = MerchantCategory.objects.filter(end_date__gt=timezone.now())
     serializer_class = MerchantCategorySerializer
 
     def get_permissions(self):
@@ -77,7 +77,7 @@ class MerchantCategoryRetrieveView(generics.RetrieveAPIView):
     """
 
     permission_classes = [IsAuthenticated,]
-    queryset = MerchantCategory.objects.filter(end_date__gt=datetime.datetime.now())
+    queryset = MerchantCategory.objects.filter(end_date__gt=timezone.now())
     serializer_class = MerchantCategorySerializer
     lookup_field = 'pk'
 
@@ -87,7 +87,7 @@ class MerchantCategoryUpdateView(generics.UpdateAPIView):
     """
     
     permission_classes = [IsAdminUser,]
-    queryset = MerchantCategory.objects.filter(end_date__gt=datetime.datetime.now())
+    queryset = MerchantCategory.objects.filter(end_date__gt=timezone.now())
     serializer_class = MerchantCategorySerializer
     lookup_field = 'pk'
 

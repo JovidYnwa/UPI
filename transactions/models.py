@@ -1,3 +1,4 @@
+
 from django.db import models
 from django.utils import timezone
 from django.core.validators import FileExtensionValidator
@@ -24,7 +25,7 @@ class MerchantCategory(models.Model):
     lang_id = models.ForeignKey(Language, on_delete=models.CASCADE)
     category_name = models.CharField(max_length=100,)
     start_date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
-    end_date = models.DateTimeField(default=timezone.datetime(2999, 12, 12, tzinfo=timezone.utc))
+    end_date = models.DateTimeField(default=timezone.datetime(2999, 12, 1, tzinfo=timezone.utc))
     category_logo = models.ImageField(        
         upload_to=get_path_upload_merchant,
         validators=[FileExtensionValidator(allowed_extensions=['jpg',]),
@@ -33,8 +34,12 @@ class MerchantCategory(models.Model):
         null=True
     )
 
+
     def __str__(self):
         return self.category_name
+    
+    class Meta:
+        verbose_name_plural = "Merchant Categories"
 
 
 class Merchant(models.Model):

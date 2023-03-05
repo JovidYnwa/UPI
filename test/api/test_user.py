@@ -19,13 +19,13 @@ def test_register_user():
     assert "password" not in data
 
 
-# @pytest.mark.django_db
-# def test_create_jwt(user):
+@pytest.mark.django_db
+def test_create_jwt(user):
 
-#     response_jwt = client.post("/auth/jwt/create/", dict(phone="111919191", password="liverpool", re_password="liverpool"))
-#     status_jwt = response_jwt.status_code
+    response_jwt = client.post("/auth/jwt/create/", dict(phone="111919191", password="liverpool", re_password="liverpool"))
+    status_jwt = response_jwt.status_code
 
-#     assert status_jwt == 200
+    assert status_jwt == 200
 
 @pytest.mark.django_db
 def test_create_test(order_test):

@@ -1,11 +1,12 @@
 from django.urls import path
-from .views import (MerchantCategoryListCreateView,
-                    MerchantCategoryRetrieveView,
-                    MerchantCategoryUpdateView, 
-                    LanguagesView,
+from .views import (
+                MerchantCategoryListCreateView,
+                MerchantCategoryRetrieveView,
+                MerchantCategoryUpdateView, 
+                LanguagesView,
 
-                    TestingQueriesDebug,
-                    TransactionView, 
+                TestingQueriesDebug,
+                TransactionView, 
                     )
 
 urlpatterns = [
