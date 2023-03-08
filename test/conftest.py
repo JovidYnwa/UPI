@@ -5,10 +5,9 @@ from authentification.models import UpiUser
 
 
 @pytest.fixture
-def user():
-    user_dc = UpiUser(phone="111919191", password="liverpool")
-    user = user.save()
-    print("======>", user.password)
+def user(db):
+    user = UpiUser(phone="111919192", password="test@123")
+    user.save()
     return user
 
 @pytest.fixture
