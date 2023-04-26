@@ -34,3 +34,9 @@ Celery command (upi is the name of the project):
 launching celery command:       celery -A upi worker -l info
 launching celery beat process:  celery -A upi beat -l INFO
 ```
+
+Pytest
+```
+Tests are invoked directly with the pytest command, instead of manage.py test, that you might be used to:
+pytest
+```
