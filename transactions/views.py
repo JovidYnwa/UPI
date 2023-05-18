@@ -104,3 +104,11 @@ class TestingQueriesDebug(APIView):
 
         sleep_task.delay(5) #delay() Invorke or celery instance to recive task
         return Response("Task was recieved")
+    
+import os
+
+class TestView(APIView):
+    def get(self, request):
+        key_form_env = os.environ.get('TEST_ENV_KEY')
+        print('the value of key ',key_form_env)
+        return Response({'yo': f"waht is going on ? the value form key {key_form_env}"})

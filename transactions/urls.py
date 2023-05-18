@@ -7,6 +7,7 @@ from .views import (
 
                 TestingQueriesDebug,
                 TransactionView, 
+                TestView,
                     )
 
 urlpatterns = [
@@ -23,4 +24,6 @@ urlpatterns = [
 
 
     path('debug/', TestingQueriesDebug.as_view()),
+    path('tt/', TestView.as_view()),
+
 ]
